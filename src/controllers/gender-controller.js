@@ -12,7 +12,7 @@ export const getGender = async (req, reply) => {
 export const create = async (req, reply) => {
   try {
     const { name } = req.body;
-    const { gender } = await prisma.gender.create({
+    const gender = await prisma.gender.create({
       data: {
         name,
       },

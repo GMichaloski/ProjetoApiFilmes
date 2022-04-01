@@ -11,6 +11,7 @@ model User {
   id       Int    @id @default(autoincrement())
   email    String @unique
   password String
+  moveis Movie[]
 }
 
 model Movie {
@@ -19,6 +20,7 @@ model Movie {
   description String
   gender Gender @relation(fields: [gender_id], references: [id])
   gender_id Int
+  user User @relation(fields: [user_id], references: [id])
   user_id Int
 }
 

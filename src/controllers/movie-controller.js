@@ -25,8 +25,6 @@ export const getMovie = async (req, reply) => {
 
 export const create = async (req, reply) => {
   const { id: user_id } = req.user;
-
-  console.log(user_id);
   const { title, description, gender_id } = req.body;
 
   try {

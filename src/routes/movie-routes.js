@@ -41,7 +41,7 @@ export default {
         required: ["title", "description", "gender_id"],
       },
     },
-    preHandler: [validateRequest],
+    preHandler: validateRequest,
     handler: MovieController.create,
   },
 
@@ -92,7 +92,7 @@ export default {
         },
       },
     },
-    preHandler: [validateRequest],
+    preHandler: validateRequest,
     handler: MovieController.remove,
   },
 };
