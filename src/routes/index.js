@@ -1,10 +1,29 @@
 import authRoutes from "./auth-routes.js";
-import usersRoutes from "./user-routes.js";
+import moviesRoutes from "./movie-routes.js";
+import genderRoutes from "./gender-routes.js";
 
-const routes = [...authRoutes, ...usersRoutes];
+export const renderRoutes = [
+  {
+    method: "GET",
+    url: "/health",
+    handler: (_, res) => {
+      res.status(200).send();
+    },
+  },
+  ...Object.values(authRoutes),
+  ...Object.values(moviesRoutes),
+  ...Object.values(genderRoutes),
+];
 
 export default (fastify, _, next) => {
-  for (let route of routes) {
+  fastify.decorateRequest("user", null);
+
+  fastify.addHook("onRequest", (req, _, next) => {
+    console.log("onRequest");
+    req.user = null;
+    next();
+  });
+  for (let route of renderRoutes) {
     fastify.route(route);
   }
   next();

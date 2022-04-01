@@ -12,3 +12,18 @@ model User {
   email    String @unique
   password String
 }
+
+model Movie {
+  id Int @id @default(autoincrement())
+  title String
+  description String
+  gender Gender @relation(fields: [gender_id], references: [id])
+  gender_id Int
+  user_id Int
+}
+
+model Gender {
+  id Int @id @default(autoincrement())
+  name String
+  movies Movie[]
+}
